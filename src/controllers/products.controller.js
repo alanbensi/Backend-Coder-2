@@ -13,12 +13,18 @@ export const getProducts = async (req,res)=> {
         if (limit) {
             if (limit < allProducts.length) {
                 const newArrayLimit = allProducts.slice(0, limit);
-                res.send({status:"Success", newArrayLimit});
+                res.render("products", { 
+                    products:newArrayLimit,
+                    styles:"products.css" 
+                });
             }else {
                 res.status(400).send ({status: "Error", message:"There isnt exist that quantity of products"})
             }
         } else {
-            res.send({ status: "Success", products: allProducts }); 
+            res.render("products", { 
+                products:allProducts,
+                styles:"products.css" 
+            });; 
         }
     } catch (error) {
         res.status(400).send ({status: "Error", message: error})
