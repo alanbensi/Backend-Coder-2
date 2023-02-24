@@ -1,10 +1,15 @@
+// import {
+//     getProductsService,
+//     getProductByIDService,
+//     createNewProductService,
+//     updateProductService,
+//     deleteProductService
+// } from "../services/products/products.services.js"
+
 import {
-    getProductsService,
-    getProductByIDService,
-    createNewProductService,
-    updateProductService,
-    deleteProductService
-} from "../services/products/products.services.js"
+    getProductsService
+} from "../db/servicesDB/products.services.js"
+
 
 export const getProducts = async (req,res)=> {
     try {

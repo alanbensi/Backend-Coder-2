@@ -5,8 +5,11 @@ import hbs from "express-handlebars";
 
 const app = express();
 
-const server = app.listen ("8080", ()=> {
-    console.log("Server running on port 8080");
+
+const PORT = process.env.PORT || 8080
+
+const server = app.listen (PORT, ()=> {
+    console.log(`Server running on port ${server.address().port}`);
 })
 
 app.use(express.json());
