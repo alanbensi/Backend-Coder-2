@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://AlanBensi:alanecommerce@ecommerce.7k0stni.mongodb.net/?retryWrites=true&w=majority", error=>{
+mongoose.connect("mongodb+srv://AlanBensi:alanriver@ecommerce.7k0stni.mongodb.net/EcommerceAlanCoder?retryWrites=true&w=majority", error=>{
     if(error) {
         console.log(error, "Cannot connect to DB");
         process.exit();
@@ -15,7 +15,7 @@ class contenedorMongoDB {
     }
     getProductsDB() {
         try {
-            const allProducts = this.productsCollection.find();
+            const allProducts = this.productsCollection.find().lean();
             return allProducts;
         } catch (error) {
             console.log(error);
