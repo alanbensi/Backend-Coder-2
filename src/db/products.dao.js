@@ -21,14 +21,14 @@ class contenedorMongoDB {
             console.log(error);
         }
     }
-    // createNewProductService (title, description, price, thumbnail, code, stock) {
-    //     try {
-    //         const allProducts = 
-    //         return allProducts;
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    createNewProductDB(product) {
+        try {
+            const result = this.productsCollection.create(product);
+            return result;
+        } catch (error) {
+            console.log (error);
+        }
+    }
 }
 
 export default contenedorMongoDB;

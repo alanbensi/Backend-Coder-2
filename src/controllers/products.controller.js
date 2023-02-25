@@ -7,7 +7,8 @@
 // } from "../services/products/products.services.js"
 
 import {
-    getProductsService
+    getProductsService,
+    createNewProductService
 } from "../db/servicesDB/products.services.js"
 
 
@@ -49,7 +50,8 @@ export const getProductsByID = async (req,res)=> {
 export const createNewProduct = async (req,res) => {    
     try {
         const product = req.body;
-        const newProduct = await createNewProductService(product.title, product.description, product.price, product.thumbnail, product.code, product.stock); 
+        const newProduct = await createNewProductService(product); 
+        console.log("new product", newProduct)
         res.send ({status: "Success", newProduct: newProduct});
     } catch (error) {
         res.status(400).send ({status: "Error", message: "The request has an error"}); 

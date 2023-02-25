@@ -11,3 +11,14 @@ export const getProductsService = async () => {
         console.log (error);
     }
 }
+
+export const createNewProductService = async (product) =>  {
+    try {
+        const newProduct = await productModel.createNewProductDB(product);
+        console.log("PRODUCTO NUEVO", newProduct);
+        return newProduct;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
