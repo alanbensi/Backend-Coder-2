@@ -21,6 +21,16 @@ class contenedorMongoDB {
             console.log(error);
         }
     }
+
+    getProductsByIdDB(id) {
+        try {
+            const product = this.productsCollection.findOne({_id:id});
+            return product;
+        } catch (error) {
+            console.log (error);
+        }
+    } 
+
     createNewProductDB(product) {
         try {
             const result = this.productsCollection.create(product);

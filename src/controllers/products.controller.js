@@ -8,6 +8,7 @@
 
 import {
     getProductsService,
+    getProductByIDService,
     createNewProductService
 } from "../db/servicesDB/products.services.js"
 
@@ -37,11 +38,14 @@ export const getProducts = async (req,res)=> {
     }
 }
 
-export const getProductsByID = async (req,res)=> {
+export const getProductByID = async (req,res)=> {
     try {
         const productId = req.params.pid;
-        const product = await getProductByIDService(parseInt(productId));
-        res.send({ status: "Success", product: product });
+        const product = await getProductByIDService(productId);
+        res.render("productByID", { 
+            product: product,
+            styles: "products.css"
+        });
     } catch (error) {
         res.status(400).send({ status: "Error", message: "Error. The product wasn´t found" })
     }
@@ -51,7 +55,6 @@ export const createNewProduct = async (req,res) => {
     try {
         const product = req.body;
         const newProduct = await createNewProductService(product); 
-        console.log("new product", newProduct)
         res.send ({status: "Success", newProduct: newProduct});
     } catch (error) {
         res.status(400).send ({status: "Error", message: "The request has an error"}); 

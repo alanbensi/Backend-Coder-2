@@ -12,10 +12,18 @@ export const getProductsService = async () => {
     }
 }
 
+export const getProductByIDService = async (id)=> {
+    try {
+        const product = await productModel.getProductsByIdDB(id);
+        return product;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createNewProductService = async (product) =>  {
     try {
         const newProduct = await productModel.createNewProductDB(product);
-        console.log("PRODUCTO NUEVO", newProduct);
         return newProduct;
     } catch (error) {
         console.log(error);

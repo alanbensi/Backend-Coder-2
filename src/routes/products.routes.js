@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
     getProducts,
-    getProductsByID,
+    getProductByID,
     createNewProduct,
     updateProduct,
     deleteProduct
@@ -10,7 +10,7 @@ import {
 const productsRouter = Router(); 
 
 productsRouter.get ("/", getProducts);
-productsRouter.get ("/:pid", getProductsByID);
+productsRouter.get ("/:pid", getProductByID);
 productsRouter.post ("/", createNewProduct);
 productsRouter.put ("/:pid", updateProduct);
 productsRouter.delete ("/:pid", deleteProduct);
