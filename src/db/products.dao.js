@@ -13,6 +13,7 @@ class contenedorMongoDB {
     constructor (collection, schema) {
         this.productsCollection = mongoose.model (collection,schema);
     }
+
     getProductsDB() {
         try {
             const allProducts = this.productsCollection.find().lean();
@@ -39,6 +40,19 @@ class contenedorMongoDB {
             console.log (error);
         }
     }
+
+    async updateProductDB(id,product) {
+        try {
+            // const oldProduct = await this.productsCollection.findOne({_id:id});
+            // console.log ("LINEA 47 producto por id", oldProduct);
+            let productUpdated = await this.productsCollection.updateOne({ _id:id }, product);
+            console.log("result en dao", productUpdated)
+            return productUpdated;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }
 
 export default contenedorMongoDB;

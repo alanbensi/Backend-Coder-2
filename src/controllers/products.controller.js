@@ -9,7 +9,8 @@
 import {
     getProductsService,
     getProductByIDService,
-    createNewProductService
+    createNewProductService,
+    updateProductService
 } from "../db/servicesDB/products.services.js"
 
 
@@ -65,12 +66,14 @@ export const createNewProduct = async (req,res) => {
 
 export const updateProduct = async (req,res) => {
     try {
-        const idProduct = req.params.pid;
-        const oldProduct = req.body; 
-        const updateProduct = await updateProductService (parseInt (idProduct), oldProduct.field, oldProduct.value); 
-        res.send ({status: "Success", product: updateProduct});
+        const id = req.params.pid;
+        const product = req.body;
+        const result = await updateProductService(id,product);
+        console.log("resultado controller", result);
+        res.send({status: "success", product: result});
     } catch (error) {
         res.status(400).send({ status: "Error", message: "Error" })
+        console.log("error", error)
     }
 }
 

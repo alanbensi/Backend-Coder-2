@@ -30,3 +30,12 @@ export const createNewProductService = async (product) =>  {
     }
 }
 
+export const updateProductService = async (id,product) => {
+    try {
+        const productService = await productModel.updateProductDB(id,product);
+        console.log("Product en srvice", productService);
+        return product;
+    } catch (error) {
+        console.log(error);
+    }
+}
