@@ -33,7 +33,16 @@ export const createNewProductService = async (product) =>  {
 export const updateProductService = async (id,product) => {
     try {
         const productService = await productModel.updateProductDB(id,product);
-        console.log("Product en srvice", productService);
+        return productService;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deleteProductService = async (idProduct)=> {
+    try {
+        const product = await productModel.deleteProductDB(idProduct);
+        console.log ("producto en service", product);
         return product;
     } catch (error) {
         console.log(error);

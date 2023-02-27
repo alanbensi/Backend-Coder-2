@@ -10,7 +10,8 @@ import {
     getProductsService,
     getProductByIDService,
     createNewProductService,
-    updateProductService
+    updateProductService,
+    deleteProductService
 } from "../db/servicesDB/products.services.js"
 
 
@@ -68,12 +69,15 @@ export const updateProduct = async (req,res) => {
     try {
         const id = req.params.pid;
         const product = req.body;
-        const result = await updateProductService(id,product);
-        console.log("resultado controller", result);
-        res.send({status: "success", product: result});
+        if (!id) {
+            throw new Error ("Error. The product doesn´t exists");
+        } else {
+            const result = await updateProductService(id,product);
+            res.send({status: "success", product: result});
+        }   
     } catch (error) {
-        res.status(400).send({ status: "Error", message: "Error" })
-        console.log("error", error)
+        res.status(400).send({ status: "Error", message: "Error" });
+        console.log("error", error);
     }
 }
 
@@ -83,10 +87,11 @@ export const deleteProduct = async (req,res) => {
         if (!idProduct) {
             throw new Error ("Error. The product doesn´t exists");
         } else {
-            const deleteProduct = await deleteProductService(parseInt(idProduct));
+            const deleteProduct = await deleteProductService(idProduct);
+            console.log ("producto en service", deleteProduct);
             res.send ({status: "Success", product: deleteProduct});
         }
     } catch (error) {
-        res.status(400).send({ status: "Error", message: "Error" })
+        res.status(400).send({ status: "Error", message: "Error" });
     }
 }

@@ -43,13 +43,20 @@ class contenedorMongoDB {
 
     async updateProductDB(id,product) {
         try {
-            // const oldProduct = await this.productsCollection.findOne({_id:id});
-            // console.log ("LINEA 47 producto por id", oldProduct);
-            let productUpdated = await this.productsCollection.updateOne({ _id:id }, product);
-            console.log("result en dao", productUpdated)
+            const productUpdated = await this.productsCollection.updateOne({ _id:id }, product);
             return productUpdated;
         } catch (error) {
-            console.log(error)
+            console.log(error);
+        }
+    }
+
+    async deleteProductDB (idProduct) {
+        try {
+            const product = await this.productsCollection.deleteOne({_id:idProduct});
+            console.log ("Producto a eliminar",product);
+            return product;
+        } catch (error) {
+            console.log(error);
         }
     }
 
